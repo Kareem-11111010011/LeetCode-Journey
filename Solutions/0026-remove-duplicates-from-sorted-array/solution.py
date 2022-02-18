@@ -3,8 +3,7 @@ class Solution:
         count = 1
         while count < len(nums):
             if nums[count] == nums[count - 1]:
-                del nums[count]
+                del [nums[count]]
             else:
                 count += 1
         return len(nums)
-            
