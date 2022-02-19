@@ -1,11 +1,21 @@
 class Solution:
     def fizzBuzz(self, n: int) -> List[str]:
-        fizz_buzz_list = list(range(1, n + 1))
-        for count, num in enumerate(fizz_buzz_list):
-            if (num % 3 == 0) & (num % 5 == 0):
-                fizz_buzz_list[count] = "FizzBuzz"
-            elif num % 3 == 0:
-                fizz_buzz_list[count] = "Fizz"
-            elif num % 5 == 0:
-                fizz_buzz_list[count] = "Buzz"
-        return [str(fizz_buzz) for fizz_buzz in fizz_buzz_list]
+        output = []
+        Fizz_Buzz = 15
+        Fizz = 3
+        Buzz = 5
+        for num in range(1, n + 1):
+            if num == Fizz_Buzz:
+                output.append("FizzBuzz")
+                Fizz += 3
+                Buzz += 5
+                Fizz_Buzz += 15
+            elif num == Fizz:
+                output.append("Fizz")
+                Fizz += 3
+            elif num == Buzz:
+                output.append("Buzz")
+                Buzz += 5
+            else:
+                output.append(str(num))
+        return output
