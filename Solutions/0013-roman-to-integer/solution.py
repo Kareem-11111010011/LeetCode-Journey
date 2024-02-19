@@ -12,8 +12,3 @@ class Solution:
         for num in s.split():
             output_integer += int(num)
         return output_integer
-        
-                
-            
-            
-
