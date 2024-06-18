@@ -1,14 +1,55 @@
 class Solution:
     def romanToInt(self, s: str) -> int:
-        output_integer = 0
-        special_roman_numeral = {"IV": " 4 ", "IX": " 9 ", "XL": " 40 ", "XC": " 90 ", "CD": " 400 ", "CM": " 900 "} 
-        regular_roman_numerals = {"I": " 1 ", "V": " 5 ", "X": " 10 ", "L": " 50 ", "C": " 100 ", "D": " 500 ", "M": " 1000 "}
-        for special_roman_numeral, value in special_roman_numeral.items():
-            if special_roman_numeral in s:
-                s = s.replace(special_roman_numeral, value)
-        for roman_numeral, value in regular_roman_numerals.items():
-            if roman_numeral in s:
-                s = s.replace(roman_numeral, value)
-        for num in s.split():
-            output_integer += int(num)
-        return output_integer
+        res = 0
+        i = 0
+
+        while i < len(s):
+            match s[i]:
+                case "I":
+                    if i < len(s) - 1 and s[i + 1] == "V":
+                        res += 4
+                        i += 2
+                    elif i < len(s) - 1 and s[i + 1] == "X":
+                        res += 9
+                        i += 2
+                    else:
+                        res += 1
+                        i += 1
+                case "X":
+                    if i < len(s) - 1 and s[i + 1] == "L":
+                        res += 40
+                        i += 2
+                    elif i < len(s) - 1 and s[i + 1] == "C":
+                        res += 90
+                        i += 2
+                    else:
+                        res += 10
+                        i += 1
+                case "C":
+                    if i < len(s) - 1 and s[i + 1] == "D":
+                        res += 400
+                        i += 2
+                    elif i < len(s) - 1 and s[i + 1] == "M":
+                        res += 900
+                        i += 2
+                    else:
+                        res += 100
+                        i += 1
+                case _:
+                    match s[i]:
+                        case "V":
+                            res += 5
+                            i += 1
+                        case "L":
+                            res += 50
+                            i += 1
+                        case "D":
+                            res += 500
+                            i += 1
+                        case "M":
+                            res += 1000
+                            i += 1
+                        case _:
+                            pass
+        
+        return res
